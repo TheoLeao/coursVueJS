@@ -1,25 +1,56 @@
 <!DOCTYPE html>
 
 <html class="accueil" lang="fr">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>hello.html</title>
-        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-	</head>
-	<body>
-		<h1>Hello ! </h1>
-		<div id="app">
-		  	{{ message }}
-		</div>
-		<script type="text/javascript">
 
-			var app = new Vue({
-				el: '#app',
-				data: {
-					message: 'Hello Vue!'
-				}
-			});
-		</script>
-	</body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>hello.html</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .navbar {
+            height: 50px;
+            width: 100%;
+            background-color: red;
+        }
+    </style>
+</head>
+<div id="app">
+    <section v-if="users.userPermission === 'Administrateur'">
+        Salut {{users.name}}, wow tu es Admin!
+    </section>
+    <section v-if="users.userPermission === 'Modérateur'">
+        Salut Modérateur!
+    </section>
+    <section v-if="users.userPermission === 'Rédacteur'">
+        Salut Redecteur !
+    </section>
+    <section v-if="users.userPermission === 'Utilisateur'">
+        Salut <span>{{users.name}}</span>, simple utilisateur !
+    </section>
+    <input type="button" value="Devenir Administrateur" @click="devenirAdmin()">
+</div>
+<script type="text/javascript">
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue!',
+            users: {
+                userPermission: 'Utilisateur',
+                name: 'Théo'
+            }
+        },
+        methods: {
+            devenirAdmin(){
+                this.users.userPermission = 'Administrateur'
+            },
+            alert(msg){
+                alert(msg)
+            }
+        }
+    });
+</script>
+</body>
+
 </html>

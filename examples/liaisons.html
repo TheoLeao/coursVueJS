@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <h4>Afficher le texte d'un input</h4>
+            <input v-model="messageInput">
+            <p>Le message est: {{messageInput}}</p>
+        </div>
+        <div>
+            <h4>Afficher le texte d'un textarea</h4>
+            <textarea v-model="messageTextarea"></textarea>
+            <p style="white-space: pre-line;">Le message est: </br>{{messageTextarea}}</p>
+        </div>
+        <div>
+            <h4>Etat d'un checkbox</h4>
+            <input type="checkbox" id="checkbox" v-model="isChecked">
+            <label for="checkbox">{{ isChecked }}</label>
+        </div>
+        <div>
+            <h4>Checkbox plusieurs valeurs</h4>
+
+            <input type="checkbox" id="Sportif" value="Sportif" v-model="checkedQualite">
+            <label for="Sportif">Sportif</label>
+
+            <input type="checkbox" id="Entrepreneur" value="Entrepreneur" v-model="checkedQualite">
+            <label for="Entrepreneur">Entrepreneur</label>
+
+            <input type="checkbox" id="Grand" value="Grand" v-model="checkedQualite">
+            <label for="Grand">Grand</label>
+            <br>
+            <span>Noms cochés : {{ checkedQualite }}</span>
+        </div>
+        <div>
+            <h4>Radio</h4>
+            <input type="radio" id="Entrepreneur" value="Entrepreneur" v-model="radioMetier">
+            <label for="Entrepreneur">Entrepreneur</label>
+            <input type="radio" id="Sportif" value="Sportif" v-model="radioMetier">
+            <label for="Sportif">Sportif haut niveau</label></br>
+            <span>Métier: {{radioMetier}}</span>
+        </div>
+        <div>
+            <h4>Select choix unique</h4>
+            <select v-model="selectSalaire">
+                <option disabled value="">Choisissez</option>
+                <option>10K/an</option>
+                <option>20K/an</option>
+                <option>30K/an</option>
+            </select></br>
+            <span>Salaire choisi: {{selectSalaire}}</span>
+        </div>
+        <div>
+            <h4>Select choix multiple</h4>
+            <select v-model="selectAvantage" multiple>
+                <option disabled value="">Choisissez</option>
+                <option>Chauffeur perso</option>
+                <option>Hotel offert</option>
+
+            </select></br>
+            <span>Avantages choisi: {{selectAvantage}}</span>
+        </div>
+        <div>
+            <h4 style="color:red">exercice : réaliser un select multiple en affichant les options avec une boucle for</h4>
+            <select>
+                <option v-for="item in donneesSelect">{{item.sport}}</option>
+            </select>
+        </div>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                messageInput: '',
+                messageTextarea: '',
+                isChecked: false,
+                checkedQualite: [],
+                radioMetier: '',
+                selectSalaire:'',
+                selectAvantage: [],
+                donneesSelect: [
+                    {
+                        'sport': 'MMA'                   
+                    },
+                    {
+                        'sport': 'Karaté'                   
+                    },
+                
+                ]               
+            }
+        });
+    </script>
+</body>
+
+</html>
